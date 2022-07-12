@@ -1,17 +1,19 @@
-import NotificaçãoBotão from "./componentes/NotificaçãoBotão"
+import Header from "./componentes/Header"
+import SalesCard from "./componentes/SalesCard"
 
 function App() {
-  return(
-    <>    
-    <h1>Olá Mundo!</h1>
-    <NotificaçãoBotão/>
-    <NotificaçãoBotão/>
-    <NotificaçãoBotão/>
-    <NotificaçãoBotão/>
-    <NotificaçãoBotão/>
-    <NotificaçãoBotão/>
+  return (
+    <>
+      <Header />
+      <main>
+        <section id="sales">
+          <div className="l2meta-container">
+            <SalesCard />
+          </div>
+        </section>
+      </main>
     </>
-
+    
   )
 }
 
