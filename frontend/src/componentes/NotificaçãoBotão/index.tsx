@@ -4,7 +4,7 @@ import './styles.css'
 
 function NotificaçãoBotão() {
     return (
-        <div className="l2meta-red-btn">
+        <div className="l2meta-blue-btn">
             <img src={icon} alt="Notificar"/>
         </div>
     )

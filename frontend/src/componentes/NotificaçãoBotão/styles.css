@@ -1,8 +1,8 @@
-.l2meta-red-btn{
+.l2meta-blue-btn{
     width:  45px;
     height: 45px;
-    background: rgba(238, 236, 236, 0.5);
-    border: 1px solid  rgb(204, 26, 26);
+    background: rgba(72, 63, 158, 0.5);
+    border: 1px solid  blue;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@
     
    
 }
-.l2meta-red-btn img{
+.l2meta-blue-btn img{
     width: 30px;
     cursor: pointer;
   
