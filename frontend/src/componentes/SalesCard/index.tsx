@@ -4,6 +4,8 @@ import './styles.css';
 import NotificaçãoBotão from '../NotificaçãoBotão';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../utils/request";
+import { Sale } from "../../models/sale";
 
 function SalesCard() {
 
@@ -14,10 +16,12 @@ function SalesCard() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
+    const [sales, setSales] = useState<Sale[]>([]);
+
     useEffect(() => {
-        axios.get("http://localhost:8080/sales")
+        axios.get(`${BASE_URL}/sales`)
             .then(response => {
-                console.log(response.data);
+                setSales(response.data.content);
             });
     }, []);
 
@@ -57,70 +61,27 @@ function SalesCard() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="show-992">#341</td>
-                            <td className="show-576">08/07/2022</td>
-                            <td>Lucas</td>
-                            <td className="show-992">15</td>
-                            <td className="show-992">11</td>
-                            <td>R$ 55300,00</td>
-                            <td>
-                                <div className="l2meta-red-btn-container">
-                                    <NotificaçãoBotão />
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td className="show-992">#342</td>
-                            <td className="show-576">08/07/2022</td>
-                            <td>Larissa</td>
-                            <td className="show-992">15</td>
-                            <td className="show-992">11</td>
-                            <td>R$ 55300,00</td>
-                            <td>
-                                <div className="l2meta-red-btn-container">
-                                    <NotificaçãoBotão />
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td className="show-992">#343</td>
-                            <td className="show-576">08/07/2022</td>
-                            <td>Edna</td>
-                            <td className="show-992">15</td>
-                            <td className="show-992">11</td>
-                            <td>R$ 55300,00</td>
-                            <td>
-                                <div className="l2meta-red-btn-container">
-                                    <NotificaçãoBotão />
-                                </div>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td className="show-992">#344</td>
-                            <td className="show-576">08/07/2022</td>
-                            <td>Maria</td>
-                            <td className="show-992">15</td>
-                            <td className="show-992">11</td>
-                            <td>R$ 55300,00</td>
-                            <td>
-                                <div className="l2meta-red-btn-container">
-                                    <NotificaçãoBotão />
-                                </div>
-                            </td>
-
-                        </tr>
-
+                        {sales.map(sale => {
+                            return (
+                                <tr key={sale.id}>
+                                    <td className="show-992">{sale.id}</td>
+                                    <td className="show-576">{new Date(sale.date).toLocaleDateString()}</td>
+                                    <td>{sale.sellerName}</td>
+                                    <td className="show-992">{sale.visited}</td>
+                                    <td className="show-992">{sale.deals}</td>
+                                    <td>R$ {sale.amount.toFixed(2)}</td>
+                                    <td>
+                                        <div className="l2meta-red-btn-container">
+                                            <NotificaçãoBotão />
+                                        </div>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>
-
         </div >
-
     )
 }
 
